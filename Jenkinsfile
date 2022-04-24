@@ -52,7 +52,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
           sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-          sh 'docker push sk0ld/custom-boxfuse:latest'}
+          sh 'docker push $APP_IMAGE'}
       }
     }
     stage('Image cleanup'){
