@@ -5,9 +5,12 @@ Short info
 ------------
 
 Tested on Ubuntu 20.04
+
+
 Jenkins was installed from repository
 
 Dockerfile is used to create custom dev environment to build .war file with maven
+
 Docker image: sk0ld/dev-alpine-mvn
 
 Preparation of Jenkins to interact/build dockerfiles:
