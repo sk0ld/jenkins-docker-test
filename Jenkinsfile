@@ -24,8 +24,10 @@ pipeline {
 
     stage ('git'){
      steps {
-       sh 'rm -rf ./app-src'
-       sh 'git clone https://github.com/sk0ld/clone-boxfuse.git ./app-src'
+       sh '''
+       rm -rf ./app-src
+       git clone https://github.com/sk0ld/clone-boxfuse.git ./app-src
+       '''
      }
     }
     
