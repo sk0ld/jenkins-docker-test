@@ -21,7 +21,6 @@ stage('start cleanup') {
         sh '''
           mvn --version
           docker --version
-          ls -la /var/run/docker.sock
           docker ps
         '''
       }
@@ -30,7 +29,7 @@ stage('start cleanup') {
 
     stage ('git'){
      steps {
-//       sh 'rm -rf ./app-src'
+       sh 'rm -rf ./app-src'
        sh 'git clone https://github.com/sk0ld/clone-boxfuse.git ./app-src'
      }
     }
