@@ -47,9 +47,7 @@ pipeline {
           sh 'docker push sk0ld/custom-boxfuse:latest'}
       }
     }
-   stage('finish cleanup') {
-     steps { 
-    cleanWs deleteDirs: true, disableDeferredWipeout: false}
+
    }
      
   }
