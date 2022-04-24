@@ -23,7 +23,9 @@ usermod -a -G docker jenkins
 
 2) Change docker configuration:
 
-edit /etc/systemd/system/multi-user.target.wants/docker.service
+edit config file (change default settings to enable docker socket) 
+
+/etc/systemd/system/multi-user.target.wants/docker.service
 ```
 #ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock -H fd:// --containerd=/run/containerd/containerd.sock
