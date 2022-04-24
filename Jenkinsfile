@@ -10,12 +10,7 @@ pipeline {
   
   stages {
     
-stage('start cleanup') {
-    steps { 
-    cleanWs deleteDirs: true, disableDeferredWipeout: false}
-   }
     
-
     stage('Test') {
       steps {
         sh '''
