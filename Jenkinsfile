@@ -36,12 +36,6 @@ pipeline {
     }
     
 
-  //   stage('docker pre-test'){
-  //    steps {
-  //      sh 'cd ./app-src && docker build -t sk0ld/custom-boxfuse:latest .'
-  //    }
-  //  }
-
     stage('App build'){
       steps {
         sh 'cd ./app-src && mvn package -DskipTest'
