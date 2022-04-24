@@ -49,6 +49,11 @@ pipeline {
           sh 'docker push sk0ld/custom-boxfuse:latest'}
       }
     }
+    stage('Image cleanup'){
+      steps {
+        sh 'docker rmi sk0ld/custom-boxfuse:latest'
+      }
+    }
 
    }
      
