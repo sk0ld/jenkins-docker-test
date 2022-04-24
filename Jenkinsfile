@@ -6,6 +6,12 @@ pipeline {
        args '-v /var/run/docker.sock:/var/run/docker.sock  -u root:root'
     }
   }
+  
+   environment {
+        APP_DIR = "./app-src"
+        APP_IMAGE = "sk0ld/custom-boxfuse:latest"
+        
+    }
 
   
   stages {
@@ -25,8 +31,8 @@ pipeline {
     stage ('git'){
      steps {
        sh '''
-       rm -rf ./app-src
-       git clone https://github.com/sk0ld/clone-boxfuse.git ./app-src
+       rm -rf $APP_DIR
+       git clone https://github.com/sk0ld/clone-boxfuse.git $APP_DIR
        '''
      }
     }
@@ -34,12 +40,12 @@ pipeline {
 
     stage('App build'){
       steps {
-        sh 'cd ./app-src && mvn package -DskipTest'
+        sh 'cd $APP_DIR && mvn package -DskipTest'
       }
     }
     stage('Image build'){
       steps {
-        sh 'cd ./app-src && docker build -t sk0ld/custom-boxfuse:latest .'
+        sh 'cd $APP_DIR && docker build -t $APP_IMAGE .'
       }
     }
     stage('Docker push'){
@@ -51,7 +57,7 @@ pipeline {
     }
     stage('Image cleanup'){
       steps {
-        sh 'docker rmi sk0ld/custom-boxfuse:latest'
+        sh 'docker rmi $APP_IMAGE'
       }
     }
 
