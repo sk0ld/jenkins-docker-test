@@ -10,10 +10,10 @@ pipeline {
   
   stages {
     
-//stage('start cleanup') {
-//    steps { 
-//    cleanWs deleteDirs: true, disableDeferredWipeout: true}
-//   }
+stage('start cleanup') {
+    steps { 
+    cleanWs deleteDirs: true, disableDeferredWipeout: false}
+   }
     
 
     stage('Test') {
@@ -30,7 +30,7 @@ pipeline {
 
     stage ('git'){
      steps {
-       sh 'rm -rf ./app-src'
+//       sh 'rm -rf ./app-src'
        sh 'git clone https://github.com/sk0ld/clone-boxfuse.git ./app-src'
      }
     }
@@ -53,10 +53,10 @@ pipeline {
           sh 'docker push sk0ld/custom-boxfuse:latest'}
       }
     }
-  // stage('cleanup') {
-  //   steps { 
-  //  cleanWs deleteDirs: true, disableDeferredWipeout: true}
- //  }
+   stage('finish cleanup') {
+     steps { 
+    cleanWs deleteDirs: true, disableDeferredWipeout: false}
+   }
      
   }
   }
